@@ -14,8 +14,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -23,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     Button btnAdd, btnEdit, btnRetrieve;
     TextView tvDBContent;
     ListView lv;
-    ArrayAdapter aa;
+    ArrayAdapter<Note> aa;
     EditText etContent;
     ArrayList<Note> al;
 
@@ -38,12 +36,9 @@ public class MainActivity extends AppCompatActivity {
         tvDBContent = findViewById(R.id.tvDBContent);
         etContent = findViewById(R.id.etContent);
         lv = findViewById(R.id.lv);
-        aa = new ArrayAdapter<Note>(this, android.R.layout.simple_list_item_1, al);
-        lv.setAdapter(aa);
 
 
         al = new ArrayList<Note>();
-
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -84,6 +79,9 @@ public class MainActivity extends AppCompatActivity {
                 tvDBContent.setText(txt);
             }
         });
+
+        aa = new ArrayAdapter<Note>(this, android.R.layout.simple_list_item_1, al);
+        lv.setAdapter(aa);
 
         btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
